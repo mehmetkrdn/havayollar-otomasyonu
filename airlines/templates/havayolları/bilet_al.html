@@ -1,84 +1,57 @@
 {% extends 'havayolları/layout.html' %}
-{% load static %}
-{% block title %}
-Bilet Al
-{% endblock %}
+{% block title %}Bilet Al | BiletAl{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header bg-danger text-white">
-                    <h3 class="card-title">Bilet Al</h3>
-                </div>
-                <div class="card-body">
-                    <form id="biletForm" action='/bilet-kaydet/' method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="isim" class="form-label">İsim:</label>
-                            <input type="text" id="isim" name="isim" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="soyisim" class="form-label">Soyisim:</label>
-                            <input type="text" id="soyisim" name="soyisim" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dogum_tarihi" class="form-label">Doğum Tarihi:</label>
-                            <input type="date" id="dogum_tarihi" name="dogum_tarihi" class="form-control" required>
-                        </div> <!--kullanıcıdan bilgi isteyen kutucuklar-->
-                        <div class="mb-3">
-                            <label for="pasaport_no" class="form-label">Pasaport No:</label>
-                            <input type="text" id="pasaport_no" name="pasaport_no" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="kart_no" class="form-label">Kart Numarası:</label>
-                            <input type="text" id="kart_no" name="kart_no" class="form-control" pattern="[0-9]{16}" title="Kart numarası 16 haneli olmalıdır" required>
-                            <div class="invalid-feedback">
-                                Kart numarası 16 haneli olmalıdır.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="son_kullanma" class="form-label">Son Kullanma Tarihi:</label>
-                            <input type="text" id="son_kullanma" name="son_kullanma" class="form-control" pattern="\d{2}/\d{2}" title="MM/YY formatında olmalıdır" required>
-                            <div class="invalid-feedback">
-                                MM/YY formatında olmalıdır. <!--kredi kart için hatalı girilirse uyarı baloncuğu verilir-->
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cvv" class="form-label">CVV:</label>
-                            <input type="text" id="cvv" name="cvv" class="form-control" pattern="[0-9]{3}" title="CVV 3 haneli olmalıdır" required>
-                            <div class="invalid-feedback">   <!--patttern 0-9 arası 3 haneli rakam zorunluluğu kılar üstte kart no içinde tarih içinde geçerli aynısı-->
-                                CVV 3 haneli olmalıdır.
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-danger">Bilet Al</button>
-                    </form>
-                </div>
-            </div>
+        <div class="col-lg-7 col-xl-6">
+            <section class="glass-card content-card">
+                <span class="eyebrow">Güvenli Rezervasyon</span>
+                <h1 class="fw-bold mt-3 mb-2">Bilet Bilgileri</h1>
+                {% if selected_flight %}
+                    <div class="info-alert p-3 mb-4">
+                        <strong>{{ selected_flight.kalkis_havaalani_id }} → {{ selected_flight.varis_havaalani_id }}</strong><br>
+                        {{ selected_flight.kalkis_tarihi }} • {{ selected_flight.havayolu_adi }} • {{ selected_flight.ucret }} TL
+                    </div>
+                {% endif %}
+                <form id="biletForm" action="{% url 'bilet_kaydet' %}" method="post" class="row g-3">
+                    {% csrf_token %}
+                    {% if selected_flight %}<input type="hidden" name="flight_id" value="{{ selected_flight.ucus_id }}">{% endif %}
+                    <div class="col-md-6">
+                        <label for="isim" class="form-label">İsim</label>
+                        <input type="text" id="isim" name="isim" class="form-control" autocomplete="given-name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="soyisim" class="form-label">Soyisim</label>
+                        <input type="text" id="soyisim" name="soyisim" class="form-control" autocomplete="family-name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dogum_tarihi" class="form-label">Doğum Tarihi</label>
+                        <input type="date" id="dogum_tarihi" name="dogum_tarihi" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="pasaport_no" class="form-label">Pasaport No</label>
+                        <input type="text" id="pasaport_no" name="pasaport_no" class="form-control" autocomplete="off" required>
+                    </div>
+                    <div class="col-12"><hr></div>
+                    <div class="col-12">
+                        <label for="kart_no" class="form-label">Kart Numarası</label>
+                        <input type="text" id="kart_no" name="kart_no" class="form-control" inputmode="numeric" pattern="[0-9]{16}" title="Kart numarası 16 haneli olmalıdır" placeholder="0000000000000000" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="son_kullanma" class="form-label">Son Kullanma Tarihi</label>
+                        <input type="text" id="son_kullanma" name="son_kullanma" class="form-control" pattern="\d{2}/\d{2}" title="MM/YY formatında olmalıdır" placeholder="AA/YY" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="text" id="cvv" name="cvv" class="form-control" inputmode="numeric" pattern="[0-9]{3}" title="CVV 3 haneli olmalıdır" placeholder="123" required>
+                    </div>
+                    <div class="col-12 d-grid mt-3">
+                        <button type="submit" class="btn btn-danger btn-lg rounded-pill">Bileti Onayla</button>
+                    </div>
+                </form>
+            </section>
         </div>
     </div>
 </div>
-
-<script>
-    document.getElementById("biletForm").addEventListener("submit", function(event){
-        event.preventDefault(); // formun sunucuya gönderilmesini engeller
-
-        // Form verilerini al
-        var isim = document.getElementById("isim").value; //kullanıcının girdiği isim değerini "isim" olarak kaydedilir sonra value değeriyle döndürür.
-        var soyisim = document.getElementById("soyisim").value;
-        var dogum_tarihi = document.getElementById("dogum_tarihi").value;
-        var pasaport_no = document.getElementById("pasaport_no").value;
-        var kart_no = document.getElementById("kart_no").value;
-        var son_kullanma = document.getElementById("son_kullanma").value;
-        var cvv = document.getElementById("cvv").value;
-
-        // Bilet alındı mesajı göster
-        alert("Bilet alındı!");
-
-        // Sunucuya formu gönder
-        var form = document.getElementById("biletForm");
-        form.submit();
-    });
-</script>
 {% endblock %}

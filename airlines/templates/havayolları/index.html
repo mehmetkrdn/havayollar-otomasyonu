@@ -1,47 +1,63 @@
 {% extends 'havayolları/layout.html' %}
-{% load static %}
-{% block title %}Uçuş Arama{% endblock %}
+{% block title %}Uçuş Arama | BiletAl{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <h2>Uçuş Arama</h2>
-            <form method="GET" action="{% url 'flight_search' %}">
-                <div class="form-group">
-                    <label for="from_airport">Nereden:</label>
-                    <select class="form-control" id="from_airport" name="from_airport">
-                        {% for ucus in ucuslar %}
-                            <option value="{{ ucus.pk }}">{{ ucus.kalkis_havaalani_id }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="to_airport">Nereye:</label>
-                    <select class="form-control" id="to_airport" name="to_airport">
-                        {% for ucus in ucuslar %}
-                            <option value="{{ ucus.pk }}">{{ ucus.varis_havaalani_id }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="start_date">Başlangıç Tarihi:</label>
-                    <input type="date" class="form-control" id="start_date" name="start_date">
-                </div>
-                <div class="form-group">
-                    <label for="end_date">Bitiş Tarihi:</label>
-                    <input type="date" class="form-control" id="end_date" name="end_date">
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-danger">Ara</button>
-                </div>
-            </form>
+    <div class="row align-items-center g-4 g-xl-5">
+        <div class="col-lg-6">
+            <span class="eyebrow">Yeni nesil uçuş deneyimi</span>
+            <h1 class="hero-title">Seyahatinizi birkaç saniyede planlayın.</h1>
+            <p class="hero-copy">Modern arayüz, hızlı arama ve sade bilet satın alma adımlarıyla BiletAl artık çok daha güncel.</p>
+            <div class="row g-3 mt-4">
+                <div class="col-6 col-md-4"><div class="stat-card"><strong>7/24</strong><span>destek</span></div></div>
+                <div class="col-6 col-md-4"><div class="stat-card"><strong>100+</strong><span>rota</span></div></div>
+                <div class="col-12 col-md-4"><div class="stat-card"><strong>Hızlı</strong><span>rezervasyon</span></div></div>
+            </div>
         </div>
-    </div>
-    <div class="row justify-content-center mt-4">
-        <div class="col-lg-5 alert alert-info">
-            Değerli Yolcularımız, Irak, İran, Ürdün ve Lübnan’daki mevcut durum sebebiyle Irak, İran, Ürdün ve Lübnan uçuşlarımız yoktur.
+        <div class="col-lg-6">
+            <section class="hero-card search-panel">
+                <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
+                    <div>
+                        <span class="eyebrow">Uçuş Arama</span>
+                        <h2 class="mt-3 mb-1">Nereye uçmak istersiniz?</h2>
+                        <p class="text-secondary mb-0">Tarih ve rota seçerek uygun uçuşları listeleyin.</p>
+                    </div>
+                </div>
+                <form method="GET" action="{% url 'flight_search' %}" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="from_airport" class="form-label">Nereden</label>
+                        <select class="form-select" id="from_airport" name="from_airport" required>
+                            <option value="" selected disabled>Kalkış seçin</option>
+                            {% for airport in kalkis_havaalanlari %}
+                                <option value="{{ airport.pk }}">{{ airport }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="to_airport" class="form-label">Nereye</label>
+                        <select class="form-select" id="to_airport" name="to_airport" required>
+                            <option value="" selected disabled>Varış seçin</option>
+                            {% for airport in varis_havaalanlari %}
+                                <option value="{{ airport.pk }}">{{ airport }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="start_date" class="form-label">Başlangıç Tarihi</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="end_date" class="form-label">Bitiş Tarihi</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    </div>
+                    <div class="col-12 d-grid mt-2">
+                        <button type="submit" class="btn btn-danger btn-lg rounded-pill">Uçuşları Ara</button>
+                    </div>
+                </form>
+            </section>
+            <div class="info-alert p-3 mt-3">
+                <strong>Bilgilendirme:</strong> Bölgesel operasyonel durumlar nedeniyle bazı hatlarda geçici sefer değişiklikleri olabilir.
+            </div>
         </div>
     </div>
 </div>

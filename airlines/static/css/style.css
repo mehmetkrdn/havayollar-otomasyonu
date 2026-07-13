@@ -1,46 +1,150 @@
-.col-lg-8{
-    padding-top: 100px;
+:root {
+    --bg-dark: #0f172a;
+    --brand: #dc2626;
+    --brand-dark: #991b1b;
+    --ink: #111827;
+    --muted: #64748b;
+    --surface: rgba(255, 255, 255, 0.92);
+    --line: rgba(148, 163, 184, 0.28);
+    --shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
 }
 
-.form-group{
-    padding: 10px;
-}
+* { box-sizing: border-box; }
+
 body {
-    font-family: 'Roboto', sans-serif;
-}
-/* static/css/styles.css */
-.card {
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(220, 38, 38, 0.58)),
+        url('../img/görsel3.jpg') center/cover fixed no-repeat;
 }
 
-.card img {
-    width: 100%;
-    height: auto;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+.site-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.card-body {
-    padding: 20px;
+.app-navbar {
+    background: rgba(15, 23, 42, 0.82);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
 }
 
-.card-title {
-    margin-bottom: 10px;
+.brand-mark {
+    display: inline-grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    box-shadow: 0 12px 24px rgba(220, 38, 38, 0.35);
 }
 
-.card-text {
-    margin-bottom: 20px;
+.navbar-brand { font-weight: 800; letter-spacing: -0.03em; }
+.nav-link { font-weight: 600; opacity: 0.9; }
+.nav-link:hover { opacity: 1; }
+
+.page-content {
+    flex: 1;
+    padding: 110px 0 56px;
 }
 
-.btn-primary {
-    background-color: #007bff;
+.hero-card,
+.glass-card,
+.flight-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+}
+
+.hero-card { padding: clamp(1.5rem, 4vw, 3rem); }
+.eyebrow {
+    display: inline-flex;
+    gap: .45rem;
+    align-items: center;
+    padding: .4rem .8rem;
+    border-radius: 999px;
+    color: var(--brand-dark);
+    background: rgba(254, 226, 226, 0.95);
+    font-weight: 700;
+    font-size: .85rem;
+}
+
+.hero-title {
+    margin: 1rem 0;
     color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    text-decoration: none;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 6vw, 4.8rem);
+    line-height: .98;
+    letter-spacing: -0.06em;
+    text-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.hero-copy { color: rgba(255, 255, 255, 0.88); font-size: 1.1rem; }
+.search-panel { padding: 1.4rem; }
+.form-label { color: #334155; font-weight: 700; }
+.form-control, .form-select {
+    min-height: 48px;
+    border-color: var(--line);
+    border-radius: 16px;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 .25rem rgba(239, 68, 68, 0.15);
+}
+.btn-danger {
+    border: 0;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    box-shadow: 0 14px 28px rgba(220, 38, 38, 0.25);
+}
+.btn-danger:hover { background: linear-gradient(135deg, #dc2626, #991b1b); }
+
+.stat-card {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+}
+.stat-card strong { display: block; font-size: 1.6rem; }
+
+.flight-card { overflow: hidden; }
+.flight-card .card-body { padding: 1.35rem; }
+.route-code { color: var(--brand); font-size: 1.35rem; font-weight: 800; }
+.meta-pill {
+    display: inline-flex;
+    padding: .35rem .7rem;
+    border-radius: 999px;
+    color: #475569;
+    background: #f1f5f9;
+    font-size: .85rem;
+    font-weight: 700;
+}
+.price { color: var(--brand-dark); font-size: 1.6rem; font-weight: 800; }
+
+.info-alert {
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 22px;
+    color: #075985;
+    background: rgba(240, 249, 255, 0.94);
+}
+
+.content-card { padding: clamp(1.25rem, 3vw, 2rem); }
+.app-footer {
+    padding: 1.2rem 0;
+    color: rgba(255, 255, 255, 0.76);
+    background: rgba(15, 23, 42, 0.84);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-links { display: flex; gap: .5rem; font-size: .92rem; }
+
+@media (max-width: 767px) {
+    .page-content { padding-top: 92px; }
+    .hero-card, .glass-card { border-radius: 22px; }
 }

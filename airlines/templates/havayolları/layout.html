@@ -1,72 +1,54 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-
-    <title>{% block title %} Ana Sayfa {% endblock %}</title>
-    <style>
-        body {
-            background-image: url('{% static "img/görsel3.jpg" %}');
-            background-size: cover;
-            background-position: center 45px;
-            background-repeat: no-repeat;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        
-        .mb-4{
-            padding-top: 70px;
-        }
-        
-        
-        
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css"/>
+    <meta name="theme-color" content="#0f172a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>{% block title %}BiletAl{% endblock %}</title>
 </head>
 <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-        <div class="container">
-            <a href="/" class="navbar-brand text-white">Bilet Al</a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link text-white">Anasayfa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/iletisim" class="nav-link text-white">İletişim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/hakkimizda" class="nav-link text-white">Hakkımızda</a>
-                    </li>
-                </ul>
+    <div class="site-shell">
+        <nav class="navbar navbar-expand-lg navbar-dark app-navbar fixed-top">
+            <div class="container">
+                <a href="/" class="navbar-brand d-flex align-items-center gap-2">
+                    <span class="brand-mark">✈</span>
+                    <span>BiletAl</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menüyü aç/kapat">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-lg-center gap-lg-2">
+                        <li class="nav-item"><a href="/" class="nav-link">Uçuş Ara</a></li>
+                        <li class="nav-item"><a href="/iletisim" class="nav-link">İletişim</a></li>
+                        <li class="nav-item"><a href="/hakkimizda" class="nav-link">Hakkımızda</a></li>
+                        <li class="nav-item ms-lg-2"><a href="/" class="btn btn-light btn-sm rounded-pill px-3">Hemen Başla</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    
+        </nav>
 
-<main>
-    {% block content%}
+        <main class="page-content">
+            {% block content %}{% endblock %}
+        </main>
 
-    {% endblock %}
-</main>
-<footer>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <p>&copy; 2024 BiletAl</p>
+        <footer class="app-footer">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <p class="mb-0">&copy; 2026 BiletAl. Güvenli ve hızlı uçuş deneyimi.</p>
+                <div class="footer-links">
+                    <span>7/24 destek</span>
+                    <span>•</span>
+                    <span>Güncel kampanyalar</span>
+                </div>
             </div>
-        </div>
+        </footer>
     </div>
-</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

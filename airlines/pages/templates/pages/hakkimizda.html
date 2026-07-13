@@ -1,90 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css"/>
-    <title>Hakkımızda</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('{% static "img/görsel5.jpg" %}');
-            background-size: cover;
-            background-position: center -90px;
-            background-repeat: no-repeat;
-            background-size: cover;
-            
-        } 
+{% extends 'havayolları/layout.html' %}
+{% block title %}Hakkımızda | BiletAl{% endblock %}
 
-        .container1 { 
-            max-width: 600px;
-            margin: 200px auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-            
-        }
-
-        .container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .contact-info {
-            text-align: center;
-        }
-
-        .contact-info p {
-            margin-bottom: 10px;
-        }
-
-        /* Hakkımızda barı */
-        .about-us-bar {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-            color: #000000; /* Yazı rengi siyah */
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-        <div class="container">
-            <a href="/" class="navbar-brand text-white">Bilet Al</a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link text-white">Anasayfa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/iletisim" class="nav-link text-white">İletişim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/hakkimizda" class="nav-link text-white">Hakkımızda</a>
-                    </li>
-                </ul>
-            </div>
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <section class="glass-card content-card">
+                <span class="eyebrow">Bizi Tanıyın</span>
+                <h1 class="fw-bold mt-3 mb-3">Hakkımızda</h1>
+                <p class="lead text-secondary">BiletAl, 2024 yılında Kocaeli'de doğan hızlı ve güvenilir uçak bileti arama platformudur.</p>
+                <p>Yolcuların farklı hava yollarına ait uçuşları sade bir ekranda görmesini, rota ve tarih bilgileriyle hızlıca seçim yapmasını hedefliyoruz. Yenilenen arayüzümüzle arama, karşılaştırma ve rezervasyon adımlarını daha modern ve anlaşılır hale getirdik.</p>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-4"><div class="stat-card text-dark bg-light"><strong>Kolay</strong><span>arama deneyimi</span></div></div>
+                    <div class="col-md-4"><div class="stat-card text-dark bg-light"><strong>Şeffaf</strong><span>fiyat bilgisi</span></div></div>
+                    <div class="col-md-4"><div class="stat-card text-dark bg-light"><strong>Güvenli</strong><span>bilet akışı</span></div></div>
+                </div>
+            </section>
         </div>
-    </nav>
-
-<div class="container1">
-    
-    <div class="about-us-bar">
-        <h2>Hakkımızda</h2>
-    </div>
-    <div class="contact-info">
-        <p><strong>:</strong> Bizler 2024 yılında Kocaelide açılmış hızlı ve güvenilir uçak bilet alış sitesiyiz. Her firmadan alabileceğiniz biletlerle rahat ve konforlu şekilde yolculuk edebilirsiniz.</p> <!--hakkında kısmı-->
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}
